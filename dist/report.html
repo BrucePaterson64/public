@@ -1,0 +1,347 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="styleSheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/styleSheet.css">  
+  <title>A2B Inspection Report</title>
+</head>
+<body style="background-color: #f2f2f2;">
+
+  <!-- NAVBAR -->
+  <nav class="z-depth-0 grey lighten-4">
+    <div class="nav-wrapper container">
+     
+      <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li class="logged-in" style="display:none;">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+          <a href="#" class="grey-text" id="logout">Logout</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+          <a href="#" class="grey-text" id="report">Inspection Report</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+          <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+          <a href="#" class="grey-text" id="home">Home</a>
+        </li>
+        
+      </ul>
+    </div>
+    
+  </nav>
+  <ul id="mobile-demo" class="sidenav sidenav-close">
+    <li class="logged-in" style="display:none;">
+      <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+    </li>
+    <li class="logged-in" style="display:none;">
+      <a href="report.html" class="grey-text ">Inspection Report</a>
+    </li>
+    <li class="logged-out" style="display:none;">
+      <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+    </li>
+    <li class="logged-out" style="display:none;">
+      <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+    </li>
+    <li class="logged-in" style="display:none;">
+      <a href="#" class="grey-text" id="mob-logout">Logout</a>
+
+    </li>
+    <li class="logged-in" style="display:none;">
+      <a href="index.html" class="grey-text " >Home</a>
+    </li>
+  </ul>
+
+  <!-- SIGN UP MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- LOGIN MODAL -->
+  <div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Account details</h4><br />
+      <div class="account-details"></div>
+    </div>
+  </div>
+
+  <!-- CREATE GUIDE MODAL -->
+  <div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Guide</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Guide Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Guide Content</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Create</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- GUIDE LIST -->
+  <div class="container" style="margin-top: 40px; display:none;">
+    <ul class="collapsible z-depth-0 guides" style="border: none;">
+    </ul>
+  </div>
+  
+  <form class="form">
+    <div class="container-fluid" id="divContainer">
+      <div class="row">
+        <div class="col-md-6"><span class="logo"><img src="https://drive.google.com/uc?export=view&id=10HALAZCzKjX_uO86m58tJNj4oh6gRxvg"></span>
+        </div>
+        <div class="col-md-6"><span class="auc">Approved Used Car <br>101
+          Multi-point<br> Inspection Sheet</span>
+        </div>
+      </div>
+      <br>
+      <div class="row">
+        <div class="col-md-6">
+          <span class="add">Inspected By:<br>Auto Motive Service & Repair<br>Unit 4 Langley Wharf Railway Terrace<br>Kings Langley, Herts WD4 8JE<br>T: 01923 261222</span>
+        </div>
+        <br>
+        <div class="col-md-6">
+          <table class="table">
+          <tr><td class="add1">Date:</td><td class="add1"><input style="width:100%; border: none;"  type="date" name="" id="d" value=""></td></tr>
+          <tr><td class="add1">Vehicle:</td><td class="add1"><input style="width:100%; border: none;" type="text" name="" id="v" value=""></td></tr>
+          <tr><td class="add1">Registration No:</td><td class="add1"><input style="width:100%; border: none;" type="text" name="" id="r" value=""></td></tr>
+          <tr><td class="add1">Current Mileage:</td><td class="add1"><input style="width:100%; border: none;" type="number" name="" id="c" value=""></td></tr>
+          <tr><td class="add1">Last Service Date:</td><td class="add1"><input style="width:100%; border: none;" type="date" name="" id="l" value=""></td></tr>
+          </table>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-3">
+          <span class="a1">&nbsp;&nbsp;Mark each item:</span>
+        </div>
+        <div class="col-md-3 text-right">
+          <span class="a1">R=Rectification Made</span>
+        </div>
+        <div class="col-md-6">
+        </div>
+      </div>
+      <div class="row no-gutters">        
+        <div class="col-md-6">     
+          <table class="table table-striped text-truncate clickable">
+            <thead>
+              <tr class="main">
+                <th scope="col">Levels</th>
+                <th class="lab1" scope="col">OK</th>
+                <th class="lab2" scope="col">R</th>
+                <th class="lab3" scope="col">N\A</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Engine Oil Check Level</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Engine Coolant Check Level</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Engine Coolant Check Protection</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Brake Fluid Check Level</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Clutch Fluid Check Level</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="col-md-6">     
+          <table class="table table-striped text-truncate clickable">
+            <thead>
+              <tr class="main">
+                <th scope="col">Levels Cont.</th>
+                <th class="lab1" scope="col">OK</th>
+                <th class="lab2" scope="col">R</th>
+                <th class="lab3" scope="col">N\A</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Power Steering</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Top Up</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Battery</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Battery</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+              <tr>
+                <td>Alternator</td>
+                <td></td>
+                <td></td>
+                <td></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <div class="d-grid gap-2 col-6 mx-auto" ><button id="btn" type="button" class="btn btn-success btn-lg">Email & Save</button></div>
+        <div class="d-grid gap-2 col-6 mx-auto"><button onclick="pdfPrint()">PDF</button></div>
+      </div>
+    <div>
+  </form> 
+ <input type="button" id="generate_pdf" value="Generate PDF">  
+    </form> 
+    
+
+
+
+
+  
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+  <script>
+    // Initialize Firebase
+    var config = {
+      apiKey: "AIzaSyAevbCtkbP2sSXsNcdShmuPiJbXAhOSn4o",
+  authDomain: "a2b-inspection-report.firebaseapp.com",
+  databaseURL: "https://a2b-inspection-report-default-rtdb.europe-west1.firebasedatabase.app",
+  projectId: "a2b-inspection-report",
+    };
+    firebase.initializeApp(config);
+    
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // update firestore settings
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="/scripts/auth.js"></script>
+  <script src="/scripts/index.js"></script>
+</body>
+<script>
+  document.getElementById("btn").addEventListener('click', getValues);
+  const onCellClick = (e) => {
+  const {target} = e; // This is the object that was clicked
+  const row = target.parentNode; // The parent, in this case a <tr>
+  const isActive = target.classList.contains("active"); // Is the cell already active?
+  const cells = row.getElementsByTagName("td"); // All the <td> elements in the row
+  
+  // Remove the active class for all the cells
+  Array.from(cells).forEach(c => {
+    c.classList.remove("active");
+  });
+  
+  // Toggle the active class for the cell that was clicked
+  if (isActive) {
+    target.classList.remove("active");
+  } else {
+    target.classList.add("active");
+  }
+}
+
+// List of all the tables that are clickable
+const tables = document.getElementsByClassName("clickable");
+
+// Array.from converts a collection into an array
+// The forEach function can then be used to loop through all the items
+Array.from(tables).forEach(table => {
+  const tbody = table.getElementsByTagName("tbody")[0];
+  // List of all cells in the table
+  const cells = tbody.getElementsByTagName("td");
+  
+// Add event handlers for all the cells
+  Array.from(cells).forEach(c => {
+    c.addEventListener("click", onCellClick);
+  })
+});
+function getValues() {
+    var d = document.getElementById("d").value;
+    var v = document.getElementById("v").value;
+    var r = document.getElementById("r").value;
+    var c = document.getElementById("c").value;
+    var l = document.getElementById("l").value;
+     google.script.run.getData(d,v,r,c,l);
+    //document.getElementById("d").value = "";
+}
+
+</script>
+</html>
+

@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>Document</title>
+</head>
+<body>
+
+<div class="container">
+    <label>Heading</label><input type="text" id="heading1"><br>
+    <label>Check</label><input type="text" id="check"><br>
+    <label>OK</label><input type="text" id="ok"><br>
+    <label>Rectified</label><input type="text" id="r"><br>
+    <label>Due soon</label><input type="text" id="d"><br>
+    <label>N\A</label><input type="text" id="na"><br>
+<button onclick="upload();">Upload</button>
+</div>
+
+
+    
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+      // Initialize Firebase
+      var config = {
+      apiKey: "AIzaSyDZWZGRwloPXUh5GfmmsHmydehNdGz_mUQ",
+      authDomain: "a2b-data.firebaseapp.com",
+      projectId: "a2b-data",
+      storageBucket: "a2b-data.appspot.com",
+      messagingSenderId: "164488591600",
+      appId: "1:164488591600:web:9e884ef3eea6a962336a35"
+      };
+      firebase.initializeApp(config);
+      
+      // make auth and firestore references
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+  
+      // update firestore settings
+      db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script src="scripts/data.js"></script>
+    <script src="scripts/auth.js"></script>
+    <script src="scripts/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  </body>
+</html>
