@@ -2,7 +2,7 @@
 auth.onAuthStateChanged(user => {
     if (user) {
       
-        db.collection('report').where("title", "==", "Levels").get().then(snapshot => {
+        db.collection('report').where("title", "==", "Levels").orderBy("timestamp", "asc").get().then(snapshot => {
           let guides=[]
           snapshot.docs.forEach(doc => {
             guides.push({ ...doc.data(), id: doc.id })

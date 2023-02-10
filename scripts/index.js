@@ -22,13 +22,13 @@ const setupGuides = (data) => {
     data.forEach(doc => {
       const guides = doc.data();
       const li = `
-         <tbody><tr><td>${guides.check}</td><td contenteditable="true">OK</td><td>R</td><td>Sn</td><td>NA</td></tr></tbody>
+         <tbody><tr><td>${guides.check}</td><td>OK</td><td>R</td><td>Sn</td><td>NA</td></tr></tbody>
       `;
       html += li;
     });
     guideList.innerHTML = html
   } else {
-    guideList.innerHTML = '<h5 class="center-align">Login to view guides</h5>';
+    guideList.innerHTML = '<h5 class="center-align">Login to view inspection report</h5>';
   }
 
   
@@ -48,13 +48,5 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Sidenav.init(elems);
 
 });
- $(".top").on("click", function() {
-  
-  if($(this).siblings('.level').css("display") == "block") {
-     
-      $(this).siblings('.level').hide();
-    } else {
-      $(this).siblings('.level').show();
-    }
-  });
+
  

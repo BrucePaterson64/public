@@ -12,32 +12,25 @@
   <link rel="stylesheet" href="/styleSheet.css">  
   <title>A2B Inspection Report</title>
 </head>
-<script>
-    $(".top").on("click", function() {
-  
-  if($(this).siblings('.level').css("display") == "block") {
-     
-      $(this).siblings('.level').hide();
-    } else {
-      $(this).siblings('.level').show();
-    }
-  });
-</script>
+
 <style>
-p {
+.L1 {
   background-color: #f5f5f5;
   color: #ef6c00 !important;
   font-weight: bold;
   height: 40px;
-  margin-top: 5px;
   margin-bottom: 0px;
   padding: 10px 0 0 5px;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 18px;
   }
+  .L2 {
+    padding: 15px 20px 0px 20px;
+  }
  tr {
   background-color:white;
  }
+ 
 
 </style>
 <body class="grey lighten-2">
@@ -157,14 +150,29 @@ p {
 
  <!-- GUIDE LIST -->
    
- <div class="container" style="margin-top: 40px;">
-  <ul class="collapsible" 
-      data-collapsible="accordion">
+<div class="container" style="margin-top: 40px;">
+  <ul class="collapsible">
     <li>
-      <div class="collapsible-header">
+      <div class="collapsible-header L1">
       Levels
       </div>
-      <div class="collapsible-body">
+      <div class="collapsible-body L2">
+        <table class="table  clickable">
+          <tbody class="guides">
+
+          </tbody>
+        </table>
+      </div>
+    </li>
+  </ul>
+</div>
+<div class="container" >
+  <ul class="collapsible">
+    <li>
+      <div class="collapsible-header L1">
+      Lights
+      </div>
+      <div class="collapsible-body L2">
         <table class="table clickable">
           <tbody class="guides">
 
@@ -222,12 +230,12 @@ p {
     target.classList.remove("active");
   } else {
     target.classList.add("active");
+   
   }
 }
 
 // List of all the tables that are clickable
 const tables = document.getElementsByClassName("clickable");
-
 
 // Array.from converts a collection into an array
 // The forEach function can then be used to loop through all the items
