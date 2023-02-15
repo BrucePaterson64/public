@@ -8,5 +8,4 @@ var check = document.getElementById("check").value;
     timestamp: firebase.firestore.FieldValue.serverTimestamp()
   })
  
-
 }

@@ -1,0 +1,431 @@
+<html lang="en">
+   
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="styleSheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styleSheet.css">  
+  <title>A2B Inspection Report</title>
+</head>
+
+<style>
+.L1 {
+  background-color: #f5f5f5;
+  color: #ef6c00 !important;
+  font-weight: bold;
+  height: 40px;
+  margin-bottom: 0px;
+  padding: 10px 0 0 5px;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 18px;
+  }
+  .L2 {
+    padding: 0px 0px 0px 0px;
+  }
+ tr {
+  background-color:white;
+ }
+ td {
+  font-weight: bold;
+  color: grey;
+  
+ }
+</style>
+<body class="grey lighten-2">
+
+  <!-- NAVBAR -->
+<nav class="z-depth-0 grey lighten-3">
+    <div class="nav-wrapper">
+        <a href="#" class="brand-logo">
+        <img src="https://drive.google.com/uc?export=view&id=10HALAZCzKjX_uO86m58tJNj4oh6gRxvg" style="width: 180px;">
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
+            </li>
+            
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="grey-text" id="logout">Logout</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="grey-text" id="report">Inspection Report</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="grey-text" id="admin">Admin</a>
+            </li>
+            <li class="logged-out" style="display:none;">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="logged-out" style="display:none;">
+                <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="grey-text" id="home">Home</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+    <ul id="mobile-demo" class="sidenav sidenav-close">
+        <li class="logged-in" style="display:none;">
+        <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="report.html" class="grey-text ">Inspection Report</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="data.html" class="grey-text ">Admin</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+        <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+        <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="#" class="grey-text" id="mob-logout">Logout</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="index.html" class="grey-text ">Home</a>
+        </li>
+    </ul>
+  <!-- SIGN UP MODAL -->
+<div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+</div>
+
+  <!-- LOGIN MODAL -->
+<div id="modal-login" class="modal">
+    <div class="modal-content">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+        <p id="fail" style="color: red; font-weight:bold;"></p>
+      </form>
+    </div>
+</div>
+
+  <!-- ACCOUNT MODAL -->
+<div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Search by Reg Number</h4><br />
+      <div class="account-details">
+        <lable></lable><input type="text" id="regNum" value="" placeholder="Registration number to search">
+        <ul class="serach">
+
+        </ul>
+      </div>
+      <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum()">Go to Inspection Report</button></div>
+    </div>
+</div>
+
+  <!-- CREATE GUIDE MODAL -->
+<div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Guide</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Guide Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Guide Content</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0" >Create</button>
+      </form>
+    </div>
+</div>
+
+ <!-- GUIDE LIST -->
+<div id="loggedout" style="margin-top: 20px; display:none;">
+</div>
+<div id="mainContainer" class="container" >
+    <div id="dealer" class="container" style="margin-top: 20px;">
+        <div>
+        <table class="table no-gutters">
+            <tr style="background-color: #f2f2f2;"><td>Inspected By:</td></tr>
+            <tr style="background-color: #f2f2f2;"><td>Auto Motive Service & Repair</td></tr>
+            <tr style="background-color: #f2f2f2;"><td>Unit 4 Langley Wharf Railway Terrace</td></tr>
+            <tr style="background-color: #f2f2f2;"><td>Kings Langley, Herts WD4 8JE</td></tr>
+            <tr style="background-color: #f2f2f2;"><td>T: 01923 261222</td></tr>
+        </table>
+        </div>
+        <div>
+            <form action="index.html">
+                <table class="table no-gutters">
+                <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" id="dt" value="" ></td></tr>
+                <tr><td>Vehicle:</td><td><input style="height:20px;" type="text" id="vehicle" value="" ></td></tr>
+                <tr><td>Registration No:</td><td><input style="height:20px;" type="text" id="reg" value="" ></td></tr>
+                <tr><td>Current Mileage:</td><td><input style="height:20px;" type="number" id="miles" value=""></td></tr>
+                <tr><td>Last Service:</td><td><input style="height:20px;" type="date" id="service" value=""></td></tr>
+                <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success" onclick="rept()">Continue to Report</button></td></tr>
+                </table>
+            </form>
+        </div>
+    </div> 
+    <div id="repWarn"></div>
+    <div id="car" style="display:none;">
+        <div class="container pr-1 pl-1" style="margin-top: 40px;">
+            <div class="d-grid gap-1">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="collapsible">
+                        <li>
+                            <div class="collapsible-header L1">
+                            Levels
+                            </div>
+                            <div class="collapsible-body L2 pl-1">
+                                <table class="table clickable" >
+                                    <tbody class="level1">
+                                    </tbody>
+                                </table>
+                            </div>
+                        </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header L1">
+                                Levels cont.
+                                </div>
+                                <div class="collapsible-body L2 pl-1">
+                                    <table class="table clickable" >
+                                        <tbody class="level2">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header L1">
+                                Lights
+                                </div>
+                                <div class="collapsible-body L2 pl-1">
+                                    <table class="table  clickable">
+                                        <tbody  class="lights1">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <ul class="collapsible">
+                            <li>
+                                <div class="collapsible-header L1">
+                                Lights Cont.
+                                </div>
+                                <div class="collapsible-body L2 pl-1">
+                                    <table class="table  clickable" >
+                                        <tbody  class="lights2">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+  
+  <script src="index.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-app.js";
+    import { getFirestore, collection, where, query, getDocs, orderBy, startAfter, limit,getCountFromServer  } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-firestore.js";
+    import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.17.1/firebase-auth.js";
+   const firebaseConfig = {
+      apiKey: "AIzaSyDZWZGRwloPXUh5GfmmsHmydehNdGz_mUQ",
+      authDomain: "a2b-data.firebaseapp.com",
+      projectId: "a2b-data",
+      storageBucket: "a2b-data.appspot.com",
+      messagingSenderId: "164488591600",
+      appId: "1:164488591600:web:9e884ef3eea6a962336a35"
+    };
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const auth = getAuth();
+    const q = query(collection(db, "report"), where("title", "==", "Levels"));
+    const snapshot = await getCountFromServer(q);
+    var levelNum = snapshot.data().count;
+    var lim = levelNum /2;
+    var load = query(q, 
+        orderBy("timestamp", "asc"), 
+        limit(lim));
+    const data = await getDocs(load);
+    const latestDoc =  data.docs[data.docs.length-1];
+    var next = query(q,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc),
+        limit(lim));
+    const data_next = await getDocs(next);
+    onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data.forEach((doc) => {
+            setupL1(data.docs);
+        })
+        data_next.forEach((doc) => {
+            setupL2(data_next.docs);
+    });
+        setupUI(user);
+    } else {
+            setupUI();
+            setupL1([]);
+            setupL2([]);
+    }
+  })
+ 
+  //document.getElementById("btn").addEventListener('click', getValues);
+  const onCellClick = (e) => {
+  const {target} = e; // This is the object that was clicked
+  const row = target.parentNode; // The parent, in this case a <tr>
+  const isActive = target.classList.contains("active"); // Is the cell already active?
+  const cells = row.getElementsByTagName("td"); // All the <td> elements in the row
+  
+  Array.from(cells).forEach(c => {
+    c.classList.remove("active");
+  });
+  
+  if (isActive) {
+    target.classList.remove("active");
+  } else {
+    target.classList.add("active");
+  }
+}
+document.querySelector(".clickable tbody").addEventListener("click", function(event) {
+    console.log("clicked");
+  var td = event.target;
+  while (td !== this && !td.matches("td")) {
+      td = td.parentNode;
+  }
+  if (td === this) {
+      console.log("No table cell found");
+  } else {
+    onCellClick(event);
+  }
+});
+  
+  // logout
+  const logout = document.querySelector('#logout');
+  logout.addEventListener('click', (e) => {
+    e.preventDefault();
+    auth.signOut();
+    window.location ="index.html";
+  });
+  const moblogout = document.querySelector('#mob-logout');
+  moblogout.addEventListener('click', (e) => {
+    e.preventDefault();
+    auth.signOut();
+    window.location ="index.html";
+  });
+  const home = document.querySelector('#home');
+  home.addEventListener('click', (e) => {
+    window.location ="index.html";
+  });
+  
+  
+  const report = document.querySelector('#report');
+  report.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location ="report.html";
+  });
+  const admin = document.querySelector('#admin');
+  report.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location ="data.html";
+  });
+  
+  // login
+  const loginForm = document.querySelector('#login-form');
+  loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    // get user info
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+  
+    // log the user in
+    signInWithEmailAndPassword(auth, email, password).then((cred) => {
+      // close the signup modal & reset form
+      const modal = document.querySelector('#modal-login');
+      M.Modal.getInstance(modal).close();
+      loginForm.reset();
+      })
+      .catch(function(error){
+        document.getElementById("fail").innerHTML = "Incorrect email or password";
+      loginForm.reset();
+    
+      });
+  
+  });
+  
+</script>
+<script>
+function rept(){
+  
+  var dt = document.getElementById("dt").value;
+  var car = document.getElementById("vehicle").value;
+  var rg = document.getElementById("reg").value;
+  var miles = document.getElementById("miles").value;
+    if (dt =="" || car ==""|| rg ==""|| miles == ""){
+    
+     repWarn.innerHTML = '<h5 class="center-align" style="color:red; font-size:24px">Please complete all fields!!</h5>';
+      
+    } else {
+      document.getElementById("car").style.display='block';
+      document.getElementById("dealer").style.display='none';
+      document.getElementById("repWarn").style.display='none';
+    }
+  
+  }
+function searchNum(){
+    alert("Hello");
+}
+
+function getValues() {
+    var d = document.getElementById("d").value;
+    var v = document.getElementById("v").value;
+    var r = document.getElementById("r").value;
+    var c = document.getElementById("c").value;
+    var l = document.getElementById("l").value;
+    google.script.run.getData(d,v,r,c,l);
+   
+}
+</script>
+</body>
+</html>

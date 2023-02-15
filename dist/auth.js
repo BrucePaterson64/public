@@ -1,19 +1,18 @@
-
 auth.onAuthStateChanged(user => {
     if (user) {
-      
-        db.collection('report').where("title", "==", "Levels").orderBy("timestamp", "asc").get().then(snapshot => {
+          db.collection('report').where("title", "==", "Levels").orderBy("timestamp", "asc").limit(126).get().then(snapshot => {
+           // LevelNum = snapshot.size;
           let guides=[]
           snapshot.docs.forEach(doc => {
             guides.push({ ...doc.data(), id: doc.id })
-        })
-          setupGuides(snapshot.docs);
+          })
+          setupL1(snapshot.docs);
           setupUI(user);
            
            });
     } else {
         setupUI();
-        setupGuides([]);
+        setupL1([]);
     }
   })
   
@@ -53,6 +52,11 @@ auth.onAuthStateChanged(user => {
   report.addEventListener('click', (e) => {
     e.preventDefault();
     window.location ="report.html";
+  });
+  const admin = document.querySelector('#admin');
+  report.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location ="data.html";
   });
   
   // login

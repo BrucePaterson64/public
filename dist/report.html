@@ -8,7 +8,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="/styleSheet.css">  
+  <link rel="stylesheet" href="styleSheet.css">  
   <title>A2B Inspection Report</title>
 </head>
 <body style="background-color: #f2f2f2;">
@@ -20,13 +20,17 @@
       <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         <li class="logged-in" style="display:none;">
-          <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+          <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
         </li>
+        
         <li class="logged-in" style="display:none;">
           <a href="#" class="grey-text" id="logout">Logout</a>
         </li>
-        <li class="logged-out" style="display:none;">
+        <li class="logged-in" style="display:none;">
           <a href="#" class="grey-text" id="report">Inspection Report</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+          <a href="#" class="grey-text" id="admin">Admin</a>
         </li>
         <li class="logged-out" style="display:none;">
           <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
@@ -37,94 +41,102 @@
         <li class="logged-in" style="display:none;">
           <a href="#" class="grey-text" id="home">Home</a>
         </li>
-        
+      </ul>
+  </div>
+</nav>
+<ul id="mobile-demo" class="sidenav sidenav-close">
+  <li class="logged-in" style="display:none;">
+    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
+  </li>
+  <li class="logged-in" style="display:none;">
+    <a href="report.html" class="grey-text ">Inspection Report</a>
+  </li>
+  <li class="logged-in" style="display:none;">
+    <a href="data.html" class="grey-text ">Admin</a>
+  </li>
+  <li class="logged-out" style="display:none;">
+    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+  </li>
+  <li class="logged-out" style="display:none;">
+    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+  </li>
+  <li class="logged-in" style="display:none;">
+    <a href="#" class="grey-text" id="mob-logout">Logout</a>
+  </li>
+  <li class="logged-in" style="display:none;">
+    <a href="index.html" class="grey-text ">Home</a>
+  </li>
+</ul>
+<!-- SIGN UP MODAL -->
+<div id="modal-signup" class="modal">
+  <div class="modal-content">
+    <h4>Sign up</h4><br />
+    <form id="signup-form">
+      <div class="input-field">
+        <input type="email" id="signup-email" required />
+        <label for="signup-email">Email address</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="signup-password" required />
+        <label for="signup-password">Choose password</label>
+      </div>
+      <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+    </form>
+  </div>
+</div>
+
+<!-- LOGIN MODAL -->
+<div id="modal-login" class="modal">
+  <div class="modal-content">
+    <h4>Login</h4><br />
+    <form id="login-form">
+      <div class="input-field">
+        <input type="email" id="login-email" required />
+        <label for="login-email">Email address</label>
+      </div>
+      <div class="input-field">
+        <input type="password" id="login-password" required />
+        <label for="login-password">Your password</label>
+      </div>
+      <button class="btn yellow darken-2 z-depth-0">Login</button>
+      <p id="fail" style="color: red; font-weight:bold;"></p>
+    </form>
+  </div>
+</div>
+
+<!-- ACCOUNT MODAL -->
+<div id="modal-account" class="modal">
+  <div class="modal-content center-align">
+    <h4>Search by Reg Number</h4><br />
+    <div class="account-details">
+      <lable></lable><input type="text" id="regNum" value="" placeholder="Registration number to search">
+      <ul class="serach">
+
       </ul>
     </div>
-    
-  </nav>
-  <ul id="mobile-demo" class="sidenav sidenav-close">
-    <li class="logged-in" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="report.html" class="grey-text ">Inspection Report</a>
-    </li>
-    <li class="logged-out" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-    </li>
-    <li class="logged-out" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="#" class="grey-text" id="mob-logout">Logout</a>
-
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="index.html" class="grey-text " >Home</a>
-    </li>
-  </ul>
-
-  <!-- SIGN UP MODAL -->
-  <div id="modal-signup" class="modal">
-    <div class="modal-content">
-      <h4>Sign up</h4><br />
-      <form id="signup-form">
-        <div class="input-field">
-          <input type="email" id="signup-email" required />
-          <label for="signup-email">Email address</label>
-        </div>
-        <div class="input-field">
-          <input type="password" id="signup-password" required />
-          <label for="signup-password">Choose password</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
-      </form>
-    </div>
+    <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum()">Go to Inspection Report</button></div>
   </div>
+</div>
 
-  <!-- LOGIN MODAL -->
-  <div id="modal-login" class="modal">
-    <div class="modal-content">
-      <h4>Login</h4><br />
-      <form id="login-form">
-        <div class="input-field">
-          <input type="email" id="login-email" required />
-          <label for="login-email">Email address</label>
-        </div>
-        <div class="input-field">
-          <input type="password" id="login-password" required />
-          <label for="login-password">Your password</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Login</button>
-      </form>
-    </div>
+<!-- CREATE GUIDE MODAL -->
+<div id="modal-create" class="modal">
+  <div class="modal-content">
+    <h4>Create Guide</h4><br />
+    <form id="create-form">
+      <div class="input-field">
+        <input type="text" id="title" required>
+        <label for="title">Guide Title</label>
+      </div>
+      <div class="input-field">
+        <textarea id="content" class="materialize-textarea" required></textarea>
+        <label for="content">Guide Content</label>
+      </div>
+      <button class="btn yellow darken-2 z-depth-0" >Create</button>
+    </form>
   </div>
-
-  <!-- ACCOUNT MODAL -->
-  <div id="modal-account" class="modal">
-    <div class="modal-content center-align">
-      <h4>Account details</h4><br />
-      <div class="account-details"></div>
-    </div>
-  </div>
-
-  <!-- CREATE GUIDE MODAL -->
-  <div id="modal-create" class="modal">
-    <div class="modal-content">
-      <h4>Create Guide</h4><br />
-      <form id="create-form">
-        <div class="input-field">
-          <input type="text" id="title" required>
-          <label for="title">Guide Title</label>
-        </div>
-        <div class="input-field">
-          <textarea id="content" class="materialize-textarea" required></textarea>
-          <label for="content">Guide Content</label>
-        </div>
-        <button class="btn yellow darken-2 z-depth-0">Create</button>
-      </form>
-    </div>
-  </div>
+</div>
+  <div id="mainContainer" ></div>
+  <div id="loggedout" ></div>
 
   <!-- GUIDE LIST -->
   <div class="container" style="margin-top: 40px; display:none;">
@@ -278,10 +290,12 @@
   <script>
     // Initialize Firebase
     var config = {
-      apiKey: "AIzaSyAevbCtkbP2sSXsNcdShmuPiJbXAhOSn4o",
-  authDomain: "a2b-inspection-report.firebaseapp.com",
-  databaseURL: "https://a2b-inspection-report-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "a2b-inspection-report",
+    apiKey: "AIzaSyDZWZGRwloPXUh5GfmmsHmydehNdGz_mUQ",
+      authDomain: "a2b-data.firebaseapp.com",
+      projectId: "a2b-data",
+      storageBucket: "a2b-data.appspot.com",
+      messagingSenderId: "164488591600",
+      appId: "1:164488591600:web:9e884ef3eea6a962336a35"
     };
     firebase.initializeApp(config);
     
@@ -293,8 +307,8 @@
     db.settings({ timestampsInSnapshots: true });
   </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <script src="/scripts/auth.js"></script>
-  <script src="/scripts/index.js"></script>
+  <script src="auth.js"></script>
+  <script src="index.js"></script>
 </body>
 <script>
   document.getElementById("btn").addEventListener('click', getValues);

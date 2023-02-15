@@ -1,11 +1,11 @@
 
     [ style="background-color: #f2f2f2;"]
  
-.table td:first-child {
-    width: 250px;
+table td:first-child {
+    width: 150px;
 }
-.table.clickable td {
-    
+table.clickable td {
+    max-width:  150px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
