@@ -281,19 +281,37 @@
     const db = getFirestore(app);
     const auth = getAuth();
     const q = query(collection(db, "report"), where("title", "==", "Levels"));
+    const lig = query(collection(db, "report"), where("title", "==", "Lights"));
     const snapshot = await getCountFromServer(q);
+    const snapshotl = await getCountFromServer(lig);
     var levelNum = snapshot.data().count;
+    var lightNum = snapshotl.data().count;
     var lim = levelNum /2;
+    var liml = lightNum /2;
+    
     var load = query(q, 
         orderBy("timestamp", "asc"), 
         limit(lim));
+    var loadl = query(lig, 
+        orderBy("timestamp", "asc"), 
+        limit(liml));
     const data = await getDocs(load);
+    const datal = await getDocs(loadl);
     const latestDoc =  data.docs[data.docs.length-1];
+    const latestDocl =  datal.docs[datal.docs.length-1];
     var next = query(q,
         orderBy("timestamp", "asc"),
         startAfter(latestDoc),
         limit(lim));
+    var next1 = query(lig,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDocl),
+        limit(liml));    
+       
+    
     const data_next = await getDocs(next);
+    const data_nextl = await getDocs(next1);
+    
     onAuthStateChanged(auth, (user) => {
     if (user) {
         data.forEach((doc) => {
@@ -301,14 +319,31 @@
         })
         data_next.forEach((doc) => {
             setupL2(data_next.docs);
-    });
-        setupUI(user);
+        });
+             setupUI(user);
     } else {
             setupUI();
             setupL1([]);
             setupL2([]);
     }
   })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        datal.forEach((doc) => {
+            setupLt1(datal.docs);
+        })
+        data_nextl.forEach((doc) => {
+           
+            setupLt2(data_nextl.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupLt1([]);
+            setupLt2([]);
+    }
+  })
+  
  
   //document.getElementById("btn").addEventListener('click', getValues);
   const onCellClick = (e) => {
