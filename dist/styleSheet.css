@@ -13,13 +13,10 @@ table.clickable td {
 table.clickable {
  border-collapse: collapse;
 }
-
 table.clickable td {
   border: 1px solid black;
   font-size: 16px;
 }
-
-/* Make all cells a set width */
 table.clickable td:not(:first-child) {
   width: 50px;
   text-align: center;
@@ -27,7 +24,6 @@ table.clickable td:not(:first-child) {
   cursor: pointer;
   transition: ease-in-out all .25s;
 }
-/* Use index of cell in row to set the colours */
 table.clickable td:nth-child(2).active {
   background-color: green;
   color: white;
@@ -48,6 +44,7 @@ table.clickable td:nth-child(5).active {
   color: black;
   font-size: 12px;
 }
+
 
 /* This CSS is only set for printing */
 @media print {
