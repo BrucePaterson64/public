@@ -37,10 +37,7 @@
   .row {
     margin-bottom: 0;
   }
-  .material-icons{
-    display: inline-flex;
-    align: end;
-  } 
+  
   p {
     width: 280px;
   }
@@ -56,51 +53,51 @@
         <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li class="logged-in" style="display:none;">
-                <a href="#" class="grey-text" id="logout">Logout</a>
+                <a href="#" class="black-text" id="logout">Logout</a>
             </li> 
             <li class="logged-in" style="display:none;">
-                <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
+                <a href="#" class="black-text modal-trigger" data-target="modal-account">Search</a>
             </li>
             <li class="logged-in" style="display:none;">
-                <a href="#" class="grey-text" id="report">Inspection Report</a>
+                <a href="#" class="black-text" id="report">Inspection Report</a>
             </li>
             <li class="logged-in" style="display:none;">
-                <a href="#" class="grey-text" id="admin">Admin</a>
+                <a href="#" class="black-text" id="admin">Admin</a>
             </li>
             <li class="logged-out" style="display:none;">
-                <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+                <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
             </li>
             <li class="logged-out" style="display:none;">
-                <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+                <a href="#" class="black-text modal-trigger" data-target="modal-signup">Sign up</a>
             </li>
             <li class="logged-in" style="display:none;">
-                <a href="#" class="grey-text" id="home">Home</a>
+                <a href="#" class="black-text" id="home">Home</a>
             </li>
         </ul>
     </div>
 </nav>
     <ul id="mobile-demo" class="sidenav sidenav-close">
         <li class="logged-in" style="display:none;">
-        <a href="#" class="grey-text" id="mob-logout">Logout</a>
+        <a href="#" class="black-text" id="mob-logout">Logout</a>
         </li>
         <li class="logged-in" style="display:none;">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-account">Search</a>
+        <a href="#" class="black-text modal-trigger" data-target="modal-account">Search</a>
         </li>
         <li class="logged-in" style="display:none;">
-        <a href="report.html" class="grey-text ">Inspection Report</a>
+        <a href="report.html" class="black-text ">Inspection Report</a>
         </li>
         <li class="logged-in" style="display:none;">
-        <a href="data.html" class="grey-text ">Admin</a>
+        <a href="data.html" class="black-text ">Admin</a>
         </li>
         <li class="logged-out" style="display:none;">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+        <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
         </li>
         <li class="logged-out" style="display:none;">
-        <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+        <a href="#" class="black-text modal-trigger" data-target="modal-signup">Sign up</a>
         </li>
         
         <li class="logged-in" style="display:none;">
-        <a href="index.html" class="grey-text ">Home</a>
+        <a href="index.html" class="black-text ">Home</a>
         </li>
     </ul>
   <!-- SIGN UP MODAL -->
@@ -176,8 +173,10 @@
 <div id="loggedout" style="margin-top: 20px; display:none;">
 </div>
 <div id="mainContainer" class="container" >
-    <div id="dealer" class="container" style="margin-top: 20px;">
-        <div>
+  <div id="dealer" class="container" style="margin-top: 10px;">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
         <table class="table no-gutters">
             <tr style="background-color: #f2f2f2;"><td>Inspected By:</td></tr>
             <tr style="background-color: #f2f2f2;"><td>Auto Motive Service & Repair</td></tr>
@@ -185,257 +184,264 @@
             <tr style="background-color: #f2f2f2;"><td>Kings Langley, Herts WD4 8JE</td></tr>
             <tr style="background-color: #f2f2f2;"><td>T: 01923 261222</td></tr>
         </table>
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6">
+        <form action="index.html">
+            <table class="table no-gutters">
+              <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" id="dt" value="" ></td></tr>
+              <tr><td>Vehicle:</td><td><input style="height:20px;" type="text" id="vehicle" value="" ></td></tr>
+              <tr><td>Registration No:</td><td><input style="height:20px;" type="text" id="reg" value="" ></td></tr>
+              <tr><td>Current Mileage:</td><td><input style="height:20px;" type="number" id="miles" value=""></td></tr>
+              <tr><td>Last Service:</td><td><input style="height:20px;" type="date" id="service" value=""></td></tr>
+              <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success" onclick="rept()">Continue to Report</button></td></tr>
+            </table>
+        </form>
+      </div>  
+      <div class="col-md-3"></div>
+    </div>
+  </div> 
+  <div id="repWarn"></div>
+  <div id="car" style="display:none;">
+    <div class="container pr-1 pl-1" style="margin-top: 40px;">
+      <div class="d-grid gap-1">
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Levels</p> <div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table clickable" >
+                    <tbody class="level1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Levels cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table clickable" >
+                    <tbody class="level2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-        <div>
-            <form action="index.html">
-                <table class="table no-gutters">
-                <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" id="dt" value="" ></td></tr>
-                <tr><td>Vehicle:</td><td><input style="height:20px;" type="text" id="vehicle" value="" ></td></tr>
-                <tr><td>Registration No:</td><td><input style="height:20px;" type="text" id="reg" value="" ></td></tr>
-                <tr><td>Current Mileage:</td><td><input style="height:20px;" type="number" id="miles" value=""></td></tr>
-                <tr><td>Last Service:</td><td><input style="height:20px;" type="date" id="service" value=""></td></tr>
-                <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success" onclick="rept()">Continue to Report</button></td></tr>
-                </table>
-            </form>
+      
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Lights</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Lights Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
         </div>
-    </div> 
-    <div id="repWarn"></div>
-    <div id="car" style="display:none;">
-      <div class="container pr-1 pl-1" style="margin-top: 40px;">
-        <div class="d-grid gap-1">
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Levels</p> <div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table clickable" >
-                      <tbody class="level1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Levels cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table clickable" >
-                      <tbody class="level2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
-        
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Lights</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Lights Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </div>
 
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Controls</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Controls Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Controls</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Underside</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Underside Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Controls Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Tyres</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                   <p>Tyres Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Underside</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
           </div>
-
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Presentation</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Presentation Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Underside Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
           </div>
+        </div>
 
-          <div class="row">
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Road Test</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable">
-                      <tbody  class="lights1">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="col-md-6 p-0">
-              <ul class="collapsible">
-                <li>
-                  <div class="collapsible-header L1">
-                  <p>Road Test Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
-                  </div>
-                  <div class="collapsible-body L2 pl-1">
-                    <table class="table  clickable" >
-                      <tbody  class="lights2">
-                      </tbody>
-                    </table>
-                  </div>
-                </li>
-              </ul>
-            </div>
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Tyres</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                  <p>Tyres Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Presentation</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Presentation Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Road Test</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable">
+                    <tbody  class="lights1">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="col-md-6 p-0">
+            <ul class="collapsible">
+              <li>
+                <div class="collapsible-header L1">
+                <p>Road Test Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
+                </div>
+                <div class="collapsible-body L2 pl-1">
+                  <table class="table  clickable" >
+                    <tbody  class="lights2">
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </div>
+  </div>
+</div>
   
   <script src="index.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
