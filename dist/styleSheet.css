@@ -29,22 +29,36 @@ table.clickable td:nth-child(2).active {
   color: white;
   font-size: 12px;
 }
+table.clickable td:nth-child(2).active::after {
+  content: "OK";
+}
 table.clickable td:nth-child(3).active {
   background-color: red;
+  content: "Rec";
   color: white;
   font-size: 12px;
 }
+table.clickable td:nth-child(3).active::after {
+  content: "Rec";
+}
 table.clickable td:nth-child(4).active {
   background-color:  #5caff2;
-  color: yellow;
-  font-size: 12px;
-}
-table.clickable td:nth-child(5).active {
-  background-color: #ef6c00;
+  content: "Due";
   color: black;
   font-size: 12px;
 }
-
+table.clickable td:nth-child(4).active::after {
+  content: "Due";
+}
+table.clickable td:nth-child(5).active {
+  background-color: #ef6c00;
+  content: "N\A";
+  color: black;
+  font-size: 12px;
+}
+table.clickable td:nth-child(5).active::after {
+  content: "NA";
+}
 
 /* This CSS is only set for printing */
 @media print {

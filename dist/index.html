@@ -172,25 +172,22 @@
  <!-- GUIDE LIST -->
 <div id="loggedout" style="margin-top: 20px; display:none;">
 </div>
-<div id="mainContainer" class="container" >
+<div id="mainContainer" class="container" style="margin-top: 30px;" >
   <div id="dealer" class="container" style="margin-top: 10px;">
     <div class="row">
-      <div class="col-md-3"></div>
       <div class="col-md-6">
         <table class="table no-gutters">
-            <tr style="background-color: #f2f2f2;"><td>Inspected By:</td></tr>
-            <tr style="background-color: #f2f2f2;"><td>Auto Motive Service & Repair</td></tr>
-            <tr style="background-color: #f2f2f2;"><td>Unit 4 Langley Wharf Railway Terrace</td></tr>
-            <tr style="background-color: #f2f2f2;"><td>Kings Langley, Herts WD4 8JE</td></tr>
-            <tr style="background-color: #f2f2f2;"><td>T: 01923 261222</td></tr>
+            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Inspected By:</td></tr>
+            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Auto Motive Service & Repair</td></tr>
+            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Unit 4 Langley Wharf Railway Terrace</td></tr>
+            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Kings Langley, Herts WD4 8JE</td></tr>
+            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">T: 01923 261222</td></tr>
+            <tr style="background-color: #f2f2f2; height:58px;"><td style="color:blue">E: info@amotive.co.uk</td></tr>
+            
         </table>
       </div>
-      <div class="col-md-3"></div>
-    </div>
-    <div class="row">
-      <div class="col-md-3"></div>
       <div class="col-md-6">
-        <form action="index.html">
+        <form id="frmReport" action="">
             <table class="table no-gutters">
               <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" id="dt" value="" ></td></tr>
               <tr><td>Vehicle:</td><td><input style="height:20px;" type="text" id="vehicle" value="" ></td></tr>
@@ -199,9 +196,7 @@
               <tr><td>Last Service:</td><td><input style="height:20px;" type="date" id="service" value=""></td></tr>
               <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success" onclick="rept()">Continue to Report</button></td></tr>
             </table>
-        </form>
       </div>  
-      <div class="col-md-3"></div>
     </div>
   </div> 
   <div id="repWarn"></div>
@@ -283,7 +278,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable">
-                    <tbody  class="lights1">
+                    <tbody  class="con1">
                     </tbody>
                   </table>
                 </div>
@@ -298,7 +293,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable" >
-                    <tbody  class="lights2">
+                    <tbody  class="con2">
                     </tbody>
                   </table>
                 </div>
@@ -316,7 +311,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable">
-                    <tbody  class="lights1">
+                    <tbody  class="und1">
                     </tbody>
                   </table>
                 </div>
@@ -331,7 +326,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable" >
-                    <tbody  class="lights2">
+                    <tbody  class="und2">
                     </tbody>
                   </table>
                 </div>
@@ -349,7 +344,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable">
-                    <tbody  class="lights1">
+                    <tbody  class="tyr1">
                     </tbody>
                   </table>
                 </div>
@@ -364,7 +359,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable" >
-                    <tbody  class="lights2">
+                    <tbody  class="tyr2">
                     </tbody>
                   </table>
                 </div>
@@ -382,7 +377,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable">
-                    <tbody  class="lights1">
+                    <tbody  class="pre1">
                     </tbody>
                   </table>
                 </div>
@@ -397,7 +392,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable" >
-                    <tbody  class="lights2">
+                    <tbody  class="pre2">
                     </tbody>
                   </table>
                 </div>
@@ -415,7 +410,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable">
-                    <tbody  class="lights1">
+                    <tbody  class="road1">
                     </tbody>
                   </table>
                 </div>
@@ -430,7 +425,7 @@
                 </div>
                 <div class="collapsible-body L2 pl-1">
                   <table class="table  clickable" >
-                    <tbody  class="lights2">
+                    <tbody  class="road2">
                     </tbody>
                   </table>
                 </div>
@@ -440,7 +435,10 @@
         </div>
       </div>
     </div>
+    <div><button type="button" class="btn btn-primary btn-lg btn-block" value="submit">Save & Email</button></div>
   </div>
+  
+        </form>
 </div>
   
   <script src="index.js"></script>
@@ -462,12 +460,68 @@
     const auth = getAuth();
     const q = query(collection(db, "report"), where("title", "==", "Levels"));
     const lig = query(collection(db, "report"), where("title", "==", "Lights"));
+    const con= query(collection(db, "report"), where("title", "==", "Controls"));
+    const und = query(collection(db, "report"), where("title", "==", "Underside"));
+    const tyr = query(collection(db, "report"), where("title", "==", "Tyres"));
+    const pre = query(collection(db, "report"), where("title", "==", "Presentation"));
+    const road = query(collection(db, "report"), where("title", "==", "RoadTest"));
     const snapshot = await getCountFromServer(q);
     const snapshotl = await getCountFromServer(lig);
+    const snapshot2 = await getCountFromServer(con);
+    const snapshot3 = await getCountFromServer(und);
+    const snapshot4 = await getCountFromServer(tyr);
+    const snapshot5 = await getCountFromServer(pre);
+    const snapshot6 = await getCountFromServer(road);
+    
     var levelNum = snapshot.data().count;
     var lightNum = snapshotl.data().count;
+    var conNum = snapshot2.data().count;
+    var undNum = snapshot3.data().count;
+    var tyrNum = snapshot4.data().count;
+    var preNum = snapshot5.data().count;
+    var roadNum = snapshot6.data().count;
+    if (levelNum % 2 == 1){
+          levelNum = levelNum +1;
+        } else {
+          levelNum = levelNum;
+      }
+      if (lightNum % 2 == 1){
+          lightNum = lightNum +1;
+        } else {
+          lightNum = lightNum;
+      }
+      if (conNum % 2 == 1){
+          conNum = conNum +1;
+        } else {
+          conNum = conNum;
+      }
+      if (undNum % 2 == 1){
+          undNum = undNum +1;
+        } else {
+          undNum = undNum;
+      }
+      if (tyrNum % 2 == 1){
+          tyrNum = tyrNum +1;
+        } else {
+          tyrNum = tyrNum;
+      }
+    if (preNum % 2 == 1){
+          preNum = preNum +1;
+        } else {
+          preNum = preNum;
+      }
+      if (roadNum % 2 == 1){
+          roadNum = roadNum +1;
+        } else {
+          roadNum = roadNum;
+      }
     var lim = levelNum /2;
     var liml = lightNum /2;
+    var lim2 = conNum /2;
+    var lim3 = undNum /2;
+    var lim4 = tyrNum /2;
+    var lim5 = preNum /2;
+    var lim6 = roadNum /2;
     
     var load = query(q, 
         orderBy("timestamp", "asc"), 
@@ -475,10 +529,37 @@
     var loadl = query(lig, 
         orderBy("timestamp", "asc"), 
         limit(liml));
+    var load2 = query(con, 
+        orderBy("timestamp", "asc"), 
+        limit(lim2));
+    var load3 = query(und, 
+        orderBy("timestamp", "asc"), 
+        limit(lim3));
+    var load4 = query(tyr, 
+        orderBy("timestamp", "asc"), 
+        limit(lim4));
+    var load5 = query(pre, 
+        orderBy("timestamp", "asc"), 
+        limit(lim5));
+    var load6 = query(road, 
+        orderBy("timestamp", "asc"), 
+        limit(lim6));
+
     const data = await getDocs(load);
     const datal = await getDocs(loadl);
+    const data2 = await getDocs(load2);
+    const data3 = await getDocs(load3);
+    const data4 = await getDocs(load4);
+    const data5 = await getDocs(load5);
+    const data6 = await getDocs(load6);
+
     const latestDoc =  data.docs[data.docs.length-1];
     const latestDocl =  datal.docs[datal.docs.length-1];
+    const latestDoc2 =  data2.docs[data2.docs.length-1];
+    const latestDoc3 =  data3.docs[data3.docs.length-1];
+    const latestDoc4 =  data4.docs[data4.docs.length-1];
+    const latestDoc5 =  data5.docs[data5.docs.length-1];
+    const latestDoc6 =  data6.docs[data6.docs.length-1];
     var next = query(q,
         orderBy("timestamp", "asc"),
         startAfter(latestDoc),
@@ -486,11 +567,37 @@
     var next1 = query(lig,
         orderBy("timestamp", "asc"),
         startAfter(latestDocl),
-        limit(liml));    
+        limit(liml));
+    var next2 = query(con,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc2),
+        limit(lim2));  
+    var next3 = query(und,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc3),
+        limit(lim3));  
+    var next4 = query(tyr,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc4),
+        limit(lim4));      
+    var next5 = query(pre,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc5),
+        limit(lim5));  
+    var next6 = query(road,
+        orderBy("timestamp", "asc"),
+        startAfter(latestDoc6),
+        limit(lim6));  
        
     
     const data_next = await getDocs(next);
     const data_nextl = await getDocs(next1);
+    const data_next2 = await getDocs(next2);
+    const data_next3 = await getDocs(next3);
+    const data_next4 = await getDocs(next4);
+    const data_next5 = await getDocs(next5);
+    const data_next6 = await getDocs(next6);
+
     
     onAuthStateChanged(auth, (user) => {
     if (user) {
@@ -523,6 +630,87 @@
             setupLt2([]);
     }
   })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data2.forEach((doc) => {
+            setupC1(data2.docs);
+        })
+        data_next2.forEach((doc) => {
+           
+            setupC2(data_next2.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupC1([]);
+            setupC2([]);
+    }
+  })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data3.forEach((doc) => {
+            setupU1(data3.docs);
+        })
+        data_next3.forEach((doc) => {
+           
+            setupU2(data_next3.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupU1([]);
+            setupU2([]);
+    }
+  })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data4.forEach((doc) => {
+            setupT1(data4.docs);
+        })
+        data_next4.forEach((doc) => {
+           
+            setupT2(data_next4.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupT1([]);
+            setupT2([]);
+    }
+  })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data5.forEach((doc) => {
+            setupP1(data5.docs);
+        })
+        data_next5.forEach((doc) => {
+           
+            setupP2(data_next5.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupP1([]);
+            setupP2([]);
+    }
+  })
+  onAuthStateChanged(auth, (user) => {
+    if (user) {
+        data6.forEach((doc) => {
+            setupR1(data6.docs);
+        })
+        data_next6.forEach((doc) => {
+           
+            setupR2(data_next6.docs);
+        });
+             setupUI(user);
+    } else {
+            setupUI();
+            setupR1([]);
+            setupR2([]);
+    }
+  })
+
   
  
   //document.getElementById("btn").addEventListener('click', getValues);

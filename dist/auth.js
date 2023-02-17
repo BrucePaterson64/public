@@ -1,6 +1,6 @@
 auth.onAuthStateChanged(user => {
     if (user) {
-          db.collection('report').where("title", "==", "Levels").orderBy("timestamp", "asc").limit(126).get().then(snapshot => {
+          db.collection('report').where("title", "==", "Levels").orderBy("timestamp", "asc").limit(76).get().then(snapshot => {
            // LevelNum = snapshot.size;
           let guides=[]
           snapshot.docs.forEach(doc => {
