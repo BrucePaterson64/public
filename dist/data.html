@@ -1,12 +1,15 @@
 <html lang="en">
+   
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="styleSheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="styleSheet.css">  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+  <!-- Compiled and minified CSS -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="styleSheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="styleSheet.css"> 
     <title>A2B Inspection Report</title>
 </head>
 <style>
@@ -26,66 +29,134 @@
 <body class="grey lighten-2">
   <nav class="z-depth-0 grey lighten-3">
     <div class="nav-wrapper">
-      <a href="#" class="brand-logo">
+        <a href="#" class="brand-logo">
         <img src="https://drive.google.com/uc?export=view&id=10HALAZCzKjX_uO86m58tJNj4oh6gRxvg" style="width: 180px;">
-      </a>
-      <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
+        </a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger sidenav-close"><i class="material-icons" style="color:grey;" >menu</i></a>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
-          <li class="logged-in" style="display:none;">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
-          </li>
-          
-          <li class="logged-in" style="display:none;">
-            <a href="#" class="grey-text" id="logout">Logout</a>
-          </li>
-          <li class="logged-in" style="display:none;">
-            <a href="#" class="grey-text" id="report">Inspection Report</a>
-          </li>
-          <li class="logged-in" style="display:none;">
-            <a href="#" class="grey-text" id="admin">Admin</a>
-          </li>
-          <li class="logged-out" style="display:none;">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-          </li>
-          <li class="logged-out" style="display:none;">
-            <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-          </li>
-          <li class="logged-in" style="display:none;">
-            <a href="#" class="grey-text" id="home">Home</a>
-          </li>
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="black-text" id="logout">Logout</a>
+            </li> 
+            <li class="logged-in" style="display:none;">
+                <a href="#" class="black-text modal-trigger" data-target="modal-account">Search</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="report.html" class="black-text" id="report">Inspection Report</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="data.html" class="black-text" id="admin">Admin</a>
+            </li>
+            <li class="logged-out" style="display:none;">
+                <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
+            </li>
+            <li class="logged-out" style="display:none;">
+                <a href="#" class="black-text modal-trigger" data-target="modal-signup">Sign up</a>
+            </li>
+            <li class="logged-in" style="display:none;">
+                <a href="index.html" class="black-text" id="home">Home</a>
+            </li>
         </ul>
     </div>
-  </nav>
-  <ul id="mobile-demo" class="sidenav sidenav-close">
-    <li class="logged-in" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="report.html" class="grey-text ">Inspection Report</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="data.html" class="grey-text ">Admin</a>
-    </li>
-    <li class="logged-out" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
-    </li>
-    <li class="logged-out" style="display:none;">
-      <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="#" class="grey-text" id="mob-logout">Logout</a>
-    </li>
-    <li class="logged-in" style="display:none;">
-      <a href="index.html" class="grey-text ">Home</a>
-    </li>
-  </ul>
+</nav>
+    <ul id="mobile-demo" class="sidenav sidenav-close">
+        <li class="logged-in" style="display:none;">
+        <a href="#" class="black-text" id="mob-logout">Logout</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="#" class="black-text modal-trigger" data-target="modal-account">Search</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="report.html" class="black-text ">Inspection Report</a>
+        </li>
+        <li class="logged-in" style="display:none;">
+        <a href="data.html" class="black-text ">Admin</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+        <a href="#" class="black-text modal-trigger" data-target="modal-login">Login</a>
+        </li>
+        <li class="logged-out" style="display:none;">
+        <a href="#" class="black-text modal-trigger" data-target="modal-signup">Sign up</a>
+        </li>
+        
+        <li class="logged-in" style="display:none;">
+        <a href="index.html" class="black-text ">Home</a>
+        </li>
+    </ul>
+  <!-- SIGN UP MODAL -->
+<div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h4>Sign up</h4><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <input type="email" id="signup-email" required />
+          <label for="signup-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="signup-password" required />
+          <label for="signup-password">Choose password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+</div>
+
+  <!-- LOGIN MODAL -->
+<div id="modal-login" class="modal ">
+    <div class="modal-content ">
+      <h4>Login</h4><br />
+      <form id="login-form">
+        <div class="input-field">
+          <input type="email" id="login-email" required />
+          <label for="login-email">Email address</label>
+        </div>
+        <div class="input-field">
+          <input type="password" id="login-password" required />
+          <label for="login-password">Your password</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+        <p id="fail" style="color: red; font-weight:bold;"></p>
+      </form>
+    </div>
+</div>
+
+  <!-- ACCOUNT MODAL -->
+<div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h4>Search by Reg Number</h4><br />
+      <div class="account-details">
+        <lable></lable><input type="text" id="regNum" value="" placeholder="Registration number to search">
+        <ul class="serach">
+
+        </ul>
+      </div>
+      <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum()">Go to Inspection Report</button></div>
+    </div>
+</div>
+
+  <!-- CREATE GUIDE MODAL -->
+<div id="modal-create" class="modal">
+    <div class="modal-content">
+      <h4>Create Guide</h4><br />
+      <form id="create-form">
+        <div class="input-field">
+          <input type="text" id="title" required>
+          <label for="title">Guide Title</label>
+        </div>
+        <div class="input-field">
+          <textarea id="content" class="materialize-textarea" required></textarea>
+          <label for="content">Guide Content</label>
+        </div>
+        <button class="btn yellow darken-2 z-depth-0" >Create</button>
+      </form>
+    </div>
+</div>
 <div id="mainContainer" ></div>
 <div id="loggedout" ></div>
 <div class="container">
   <br><br>
   <div ><h4>Add Item to Inspection List</h4></div><br>
   <div>
-    
+  
     <table class="table table-bordered" id="add-item">
       <tr><td>Category:</td><td><select id="heading" style="display:block">
         <option value="">--Please choose an option--</option>
@@ -99,45 +170,90 @@
         </select></td></tr>
       <tr><td>Item to Check:</td><td><input type="text" id="check" tab="1"></td></tr>
       
-      <tr><td></td><td><button onclick="upload();">Upload</button></td></tr> 
+      <tr><td></td><td><button class="upload">Upload</button></td></tr> 
     </table>
-   
+  
   </div>
+  
+<form class="frmReport">
   <div class="collapsible-body L2">
-    <table class="table  clickable" id="myTable">
-      <tbody class="guides">
-
+    <table class="table" id="myTable">
+      <tbody class="level1">
       </tbody>
     </table>
+    <table class="table " id="myTable">
+      <tbody class="level2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="lights1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="lights2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="con1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="con2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="und1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="und2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="tyr1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="tyr2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="pre1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="pre2">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="road1">
+      </tbody>
+    </table>
+    <table class="table" id="myTable">
+      <tbody class="road2">
+      </tbody>
+    </table>
+  </form>
   </div>
 </div>
+<script src="/dist/bundle.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
-    
-    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
-    <script>
-      // Initialize Firebase
-      var config = {
-      apiKey: "AIzaSyDZWZGRwloPXUh5GfmmsHmydehNdGz_mUQ",
-      authDomain: "a2b-data.firebaseapp.com",
-      projectId: "a2b-data",
-      storageBucket: "a2b-data.appspot.com",
-      messagingSenderId: "164488591600",
-      appId: "1:164488591600:web:9e884ef3eea6a962336a35"
-      };
-      firebase.initializeApp(config);
-      
-      // make auth and firestore references
-      const auth = firebase.auth();
-      const db = firebase.firestore();
-     
+<script>
+   
 
-      // update firestore settings
-      db.settings({ timestampsInSnapshots: true });
-    </script>
-    <script src="data.js"></script>
-    <script src="index.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  </body>
+document.addEventListener('DOMContentLoaded', function() {
+  
+  var modals = document.querySelectorAll('.modal');
+  M.Modal.init(modals);
+
+  var items = document.querySelectorAll('.collapsible');
+  M.Collapsible.init(items);
+
+  var elems = document.querySelectorAll('.sidenav');
+  var instances = M.Sidenav.init(elems);
+
+});
+</script>
+</body>
 </html>

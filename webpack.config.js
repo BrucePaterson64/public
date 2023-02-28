@@ -1,12 +1,16 @@
 const path = require('path')
 
 module.exports = {
+  
   mode: 'development',
-  entry: '/dist/index.js',
+  entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
   },
   devtool: 'eval-source-map',
   watch: true,
+  experiments: {
+  topLevelAwait: true
+  }
 }

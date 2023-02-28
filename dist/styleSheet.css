@@ -1,5 +1,5 @@
 
-    [ style="background-color: #f2f2f2;"]
+[ style="background-color: #f2f2f2;"]
  
 table td:first-child {
     width: 150px;
@@ -29,34 +29,31 @@ table.clickable td:nth-child(2).active {
   color: white;
   font-size: 12px;
 }
-table.clickable td:nth-child(2).active::after {
+table.clickable td:nth-child(2).active::before {
   content: "OK";
 }
 table.clickable td:nth-child(3).active {
   background-color: red;
-  content: "Rec";
   color: white;
   font-size: 12px;
 }
-table.clickable td:nth-child(3).active::after {
+table.clickable td:nth-child(3).active::before {
   content: "Rec";
 }
 table.clickable td:nth-child(4).active {
   background-color:  #5caff2;
-  content: "Due";
   color: black;
   font-size: 12px;
 }
-table.clickable td:nth-child(4).active::after {
+table.clickable td:nth-child(4).active::before {
   content: "Due";
 }
 table.clickable td:nth-child(5).active {
   background-color: #ef6c00;
-  content: "N\A";
   color: black;
   font-size: 12px;
 }
-table.clickable td:nth-child(5).active::after {
+table.clickable td:nth-child(5).active::before {
   content: "NA";
 }
 
@@ -183,4 +180,9 @@ table.clickable td:nth-child(5).active::after {
       background-color: #f2f2f2;
       padding: 46px 22px 115px 22px;
     
+  }
+  .modal {
+    margin-top: 15px;
+    width: 400px;
+    height: 300px;
   }
