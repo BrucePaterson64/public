@@ -550,11 +550,13 @@ const onCellClick = (e) => {
     const sel_id = sel.id;
     const sliced = sel_id.slice(0, 3);
     const slicedId = sel_id.substring(3);
+    const newSliced = sliced.replace(/_/g,"");
+    const newSlicedId = slicedId.replace(/_/g,"");
         
         addDoc(addColRef,{
         reference : dataId,
-        check : slicedId,
-        result : sliced,
+        check : newSlicedId,
+        result : newSliced,
         reg: reg,
         date : dt
                         
@@ -640,18 +642,23 @@ const onCellClick = (e) => {
 const getDat = document.querySelector('.repData');
 getDat.addEventListener('click', () => {
 
-const table_data = document.querySelector('.clickable');
-const table_length= table_data.rows.length;
-let upload_bill_data=[];
-let x="";
-for(var i=0;i<table_length;i++){
-    upload_bill_data = '[';
-    upload_bill_data = upload_bill_data +  'Checked Item: ' + table_data.rows[i].cells.item(0).innerHTML + ','; 
-    upload_bill_data = upload_bill_data +  'OK: ' + table_data.rows[i].cells.item(1).text + ',';
-    upload_bill_data = upload_bill_data +  'Rectified: ' + table_data.rows[i].cells.item(2).value;  
-   
-    }
+const table_data = document.querySelector(".clickable");
+const selected_td = document.querySelectorAll(".clickable .active");
 
-upload_bill_data += ']';
-console.log(upload_bill_data + "no of rows: " + table_length);
-})
+      selected_td.forEach(sel => {
+        //for(var i=0;i<selected_td.length;i++){
+         // var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
+         
+      const dataId = sel.dataset.id;
+      const sel_id = sel.id;
+      const sliced = sel_id.slice(0,3);
+      const newSliced = sliced.replace(/_/g,"");
+      console.log( newSliced + " - " + dataId) 
+      
+    })
+  })
+
+//})
+
+
+
