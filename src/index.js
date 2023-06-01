@@ -542,7 +542,7 @@ const onCellClick = (e) => {
     // Test Report button
     const loadSelections = document.querySelector('.selections')
     loadSelections.addEventListener("click", function () {
-    const reg = document.getElementById('reg').value;
+    const reg = document.getElementById("reg").value;
     const dt = document.getElementById("dt").value;
     const selected_td = document.querySelectorAll(".clickable .active");
     selected_td.forEach(sel => {
@@ -574,6 +574,10 @@ const onCellClick = (e) => {
         timestamp: serverTimestamp()
       
   })
+ });
+ const lookupregNum = document.querySelector('.lookupReg')
+ lookupregNum.addEventListener("click", function () {
+console.log("selected");
  })
 
    // Continue to Report button
