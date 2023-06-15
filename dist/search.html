@@ -31,7 +31,7 @@
  }
  td {
   font-weight: bold;
-  color: grey;
+  color: blue;
    }
   .row {
     margin-bottom: 0;
@@ -147,7 +147,7 @@
 
         </ul>
       </div>
-      <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum(e)">Go to Inspection Report</button></div>
+      <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum()">Go to Inspection Report</button></div>
     </div>
 </div>
 
@@ -175,35 +175,31 @@
 <div id="mainContainer" class="container" style="margin-top: 30px;">
   <div id="dealer" class="container" style="margin-top: 10px;">
     <div class="row">
-      <div class="col-md-6">
-        <table class="table no-gutters">
-            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Inspected By:</td></tr>
-            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Auto Motive Service & Repair</td></tr>
-            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Unit 4 Langley Wharf Railway Terrace</td></tr>
-            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">Kings Langley, Herts WD4 8JE</td></tr>
-            <tr style="background-color: #f2f2f2; height:51px;"><td style="color:blue">T: 01923 261222</td></tr>
-            <tr style="background-color: #f2f2f2; height:58px;"><td style="color:blue">E: info@amotive.co.uk</td></tr>
-            
-        </table>
-      </div>
-      <div class="col-md-6">
+        <div class="col-md-6">
         <form class="frmReport" id="frmReport">
-          <table class="table no-gutters">
-            <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" name="dt" id="dt" value="" ></td></tr>
-            <tr><td>Vehicle:</td><td><input style="height:20px; text-transform:uppercase" type="text" id="vehicle" name="vehicle" value=""></td></tr>
-            <tr><td>Registration No:</td><td><input style="height:20px; text-transform:uppercase" type="text" name="reg" id="reg" value=""></td></tr>
-            <tr><td>Current Mileage:</td><td><input style="height:20px;" type="number" name="miles" id="miles" value=""></td></tr>
-            <tr><td>Last Service:</td><td><input style="height:20px;" type="date" name="service" id="service" value=""></td></tr>
-            <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success rept" >Continue to Report</button></td></tr>
-          </table>
+            <table class="table no-gutters">
+                <tr><td style="width:150px">Last Inspection:</td><td><input style="height:20px;" type="text" name="dt" id="dt" value="" ></td></tr>
+                <tr><td>Vehicle:</td><td><input style="height:20px; text-transform:uppercase" type="text" id="vehicle" name="vehicle" value=""></td></tr>
+                <tr><td>Registration No:</td><td><input style="height:20px; text-transform:uppercase" type="text" name="reg" id="reg" value=""></td></tr>
+                <tr ><td colspan="2" style="text-align: center;"><button type="button" class="btn btn-success searchedRept" >Get Report</button></td></tr>
+            </table>
         </form>
-      </div>  
+    </div>  
     </div>
   </div> 
   <div id="repWarn"></div>
   <div id="car" style="display:none;">
     <div class="container pr-1 pl-1" style="margin-top: 40px;">
       <div class="d-grid gap-1">
+        <div class="row">
+            <div class="col-md-12 p-0">
+                <table>
+                    <tr><th>Make</th><th>Reg No</th><th>Report Date</th></tr>
+                    <tr><td id="manuf" style="text-transform:uppercase"></td><td id="num" style="text-transform:uppercase"></td><td id="lastDate"></td></tr>
+                </table>
+                
+            </div>
+        </div>
         <div class="row">
           <div class="col-md-6 p-0">
             <ul class="collapsible">
@@ -212,7 +208,7 @@
                 <p>Levels</p> <div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5>
                 </div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table clickable" >
                     <tbody class="level1">
                     </tbody>
@@ -228,7 +224,7 @@
                 <p>Levels cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5>
                 </div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table clickable" >
                     <tbody class="level2">
                     </tbody>
@@ -246,7 +242,7 @@
                 <div class="collapsible-header L1">
                 <p>Lights</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable">
                     <tbody  class="lights1">
                     </tbody>
@@ -261,7 +257,7 @@
                 <div class="collapsible-header L1">
                 <p>Lights Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable" >
                     <tbody  class="lights2">
                     </tbody>
@@ -279,7 +275,7 @@
                 <div class="collapsible-header L1">
                 <p>Controls</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable">
                     <tbody  class="con1">
                     </tbody>
@@ -294,7 +290,7 @@
                 <div class="collapsible-header L1">
                 <p>Controls Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable" >
                     <tbody  class="con2">
                     </tbody>
@@ -312,7 +308,7 @@
                 <div class="collapsible-header L1">
                 <p>Underside</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable">
                     <tbody  class="und1">
                     </tbody>
@@ -327,7 +323,7 @@
                 <div class="collapsible-header L1">
                 <p>Underside Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable" >
                     <tbody  class="und2">
                     </tbody>
@@ -345,7 +341,7 @@
                 <div class="collapsible-header L1">
                 <p>Tyres</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable">
                     <tbody  class="tyr1">
                     </tbody>
@@ -360,7 +356,7 @@
                 <div class="collapsible-header L1">
                   <p>Tyres Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable" >
                     <tbody  class="tyr2">
                     </tbody>
@@ -378,7 +374,7 @@
                 <div class="collapsible-header L1">
                 <p>Presentation</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable">
                     <tbody  class="pre1">
                     </tbody>
@@ -393,7 +389,7 @@
                 <div class="collapsible-header L1">
                 <p>Presentation Cont.</p><div style="width:100%"><h5 class="right-align"><i class="material-icons" >arrow_drop_down</i></h5></div>
                 </div>
-                <div class="collapsible-body L2 pl-1">
+                <div class="L2 pl-1">
                   <table class="table  clickable" >
                     <tbody  class="pre2">
                     </tbody>
@@ -440,9 +436,7 @@
     </div>
     <div><button id="btn" type="submit" class="btn btn-primary btn-lg btn-block">Save & Email</button></div><br>
   </div>
-
-  <div><button class="btn btn-primary btn-lg selections" >Test Report</button></div>
-  <div><button class="btn btn-primary btn-lg repData" >Test data</button></div>
+  
 </div>
 <p class="upload"></p>
   <script src="bundle.js"></script>
@@ -452,6 +446,24 @@
   <script src="https://www.gstatic.com/firebasejs/7.16.1/firebase-firestore.js"></script>
   
   <script>
+
+    var params = {};
+
+if (location.search) {
+    var parts = location.search.substring(1).split('&');
+    for (var i = 0; i < parts.length; i++) {
+        var nv = parts[i].split('=');
+        if (!nv[0]) continue;
+        params[nv[0]] = nv[1] || true;
+        var regno = params.Reg;
+        var car = params.Make;
+        var d = params.Date;
+    }
+
+        document.getElementById('dt').value = d;
+        document.getElementById('vehicle').value =car;
+        document.getElementById('reg').value = regno;
+  }      
   function sel(){
       const selected_td = document.querySelectorAll(".clickable .active");
       selected_td.forEach(sel => {

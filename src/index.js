@@ -1,4 +1,3 @@
-
 import { initializeApp } from 'firebase/app'
 import {
   getFirestore, collection, onSnapshot,
@@ -23,6 +22,7 @@ const auth = getAuth();
 const colRef = collection(db, 'report')
 const addColRef = collection(db, 'result')
 const addCarRef = collection(db, 'vehicles')
+
 const q = query(colRef, where("title", "==", "Levels"))
 const lig = query(colRef, where("title", "==", "Lights"));
 const con= query(colRef, where("title", "==", "Controls"));
@@ -51,6 +51,7 @@ const P1List = document.querySelector('.pre1');
 const P2List = document.querySelector('.pre2');
 const R1List = document.querySelector('.road1');
 const R2List = document.querySelector('.road2');
+const LU1List = document.querySelector('.LU1');
 const loggedOutLinks = document.querySelectorAll('.logged-out');
 const loggedInLinks = document.querySelectorAll('.logged-in');
 var levelNum = snapshot.data().count;
@@ -176,7 +177,7 @@ const data_next5 = await getDocs(next5);
 const data_next6 = await getDocs(next6); 
 
 const setupUI = (user) => {
-    if (user) {
+    if (user) {load6
       loggedInLinks.forEach(item => item.style.display = 'block');
       loggedOutLinks.forEach(item => item.style.display = 'none');
     } else {
@@ -456,7 +457,7 @@ const setupR1 = (data) => {
 
 onAuthStateChanged(auth, (user) => {
         if (user) {
-            
+         
         data.forEach((doc) => {
             setupL1(data.docs);
         })
@@ -507,16 +508,46 @@ onAuthStateChanged(auth, (user) => {
     }
   })
 
- 
+// search reg number from report.html
+const regNum = document.querySelector('.searchregno')
+if (regNum) {
+  regNum.addEventListener("click", async function () {
+  let rn = document.getElementById("regNo").value;
+  const qrn = query(addCarRef, where("reg", "==", rn))
+  const querySnapshot = await getDocs(qrn);
+  const setupLU1 = (querySnapshot) => {
+    if (!querySnapshot.empty){
+      let html = '';
+      querySnapshot.forEach((doc) => {
+      const lu2 = doc.data();
+      const li = `
+        <tr>
+          <td style="text-transform:uppercase"><a href="search.html?Reg=${lu2.reg}&Make=${lu2.vehicle}&Date=${lu2.date}">${lu2.reg}</a></td><td style="text-transform:uppercase">${lu2.vehicle}</td><td>${lu2.date}</td>
+        </tr>
+        `;
+        html += li;
+        });
+        LU1List.innerHTML = html
+        } else {
+          console.log("Uh Oh!");
+          const noRecords = "No Records Found!";
+          document.getElementById("nrf").innerHTML = noRecords;
+        };
+      }  
+
+          querySnapshot.forEach((doc) => {
+          setupLU1(querySnapshot.docs);
+    })   
+  })
+};
+
+      
 onSnapshot(q, (snapshot) => {
   let report = []
   snapshot.docs.forEach(doc => {
     report.push({ ...doc.data(), id: doc.id })
   })
-  
 })
-
-
 const onCellClick = (e) => {
     const {target} = e; // This is the object that was clicked
     const row = target.parentNode; // The parent, in this case a <tr>
@@ -539,10 +570,14 @@ const onCellClick = (e) => {
       onCellClick(e);
     })
   });
+  
+  
+
     // Test Report button
     const loadSelections = document.querySelector('.selections')
+    if (loadSelections){
     loadSelections.addEventListener("click", function () {
-    const reg = document.getElementById("reg").value;
+    const reg = document.getElementById('reg').value;
     const dt = document.getElementById("dt").value;
     const selected_td = document.querySelectorAll(".clickable .active");
     selected_td.forEach(sel => {
@@ -563,8 +598,10 @@ const onCellClick = (e) => {
           });
       })
     })
+  }
 
   const loadItems = document.querySelector('.upload')
+  if (loadItems){
     loadItems.addEventListener("click", () => {
     var head = document.getElementById("heading").value;
     var check = document.getElementById("check").value;
@@ -573,15 +610,12 @@ const onCellClick = (e) => {
         check: check,
         timestamp: serverTimestamp()
       
-  })
- });
- const lookupregNum = document.querySelector('.lookupReg')
- lookupregNum.addEventListener("click", function () {
-console.log("selected");
- })
-
+      })
+    })
+  }
    // Continue to Report button
   const addResultForm = document.querySelector('.rept')
+  if (addResultForm){
   addResultForm.addEventListener("click", (e) => {
     e.preventDefault();
     var dt = document.getElementById("dt").value;
@@ -607,6 +641,41 @@ console.log("selected");
         })
     }
   })
+}
+const getResultForm = document.querySelector('.searchedRept')
+  if (getResultForm){
+  getResultForm.addEventListener("click", async (e) => {
+    e.preventDefault();
+    var reg = document.getElementById('reg').value;
+    var service = document.getElementById("dt").value;
+    var make = document.getElementById("vehicle").value;
+console.log(reg);
+    const getData = query(addColRef, where("reg", "==", reg), where("date", "==", service))
+    const ret = await getDocs(getData);
+    ret.forEach(async (doc) => {
+    const retData = doc.data();
+    console.log(retData.reference);
+    console.log(doc.id);
+          //const getCheck = query(colRef, where(doc.id, "==", retData.reference));
+          //const ret2 = await getDocs(getCheck);
+          //ret2.forEach( async (snapshot) => {
+             //const gotData = snapshot.data();
+              //console.log(retData.reference);
+              //console.log(gotData.check);
+           // })
+
+      
+      console.log(retData.check, " - ", retData.result);
+      });
+             
+          document.getElementById("car").style.display='block';
+          document.getElementById("dealer").style.display='none';
+          document.getElementById("manuf").innerHTML = make;
+          document.getElementById("num").innerHTML = reg;
+          document.getElementById("lastDate").innerHTML = service;
+        })
+    }
+ 
   
    // login
    const loginForm = document.querySelector('#login-form');
@@ -643,26 +712,39 @@ console.log("selected");
     console.log(err.message)
   })
 })
-const getDat = document.querySelector('.repData');
-getDat.addEventListener('click', () => {
+function searchReg(){
 
+  window.location ="index.html";
+}
+
+
+const getDat = document.querySelector('.repData');
+if (getDat){
+getDat.addEventListener('click', () => {
 const table_data = document.querySelector(".clickable");
 const selected_td = document.querySelectorAll(".clickable .active");
 
       selected_td.forEach(sel => {
-        //for(var i=0;i<selected_td.length;i++){
-         // var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
-         
+        for(var i=0;i<selected_td.length;i++){
+          var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
+          console.log(d);
       const dataId = sel.dataset.id;
       const sel_id = sel.id;
       const sliced = sel_id.slice(0,3);
       const newSliced = sliced.replace(/_/g,"");
       console.log( newSliced + " - " + dataId) 
-      
+        }
     })
   })
+}
 
-//})
-
+const searchRegNo = document.querySelector('.searchNum');
+if (searchRegNo) {
+searchRegNo.addEventListener('click', () => {
+  var selectReg = document.getElementById('regNum').value
+  console.log(selectReg);
+  window.location ="report.html?Reg=" + selectReg;
+})
+}
 
 
