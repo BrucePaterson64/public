@@ -436,7 +436,7 @@
     </div>
     <div><button id="btn" type="submit" class="btn btn-primary btn-lg btn-block">Save & Email</button></div><br>
   </div>
-  
+  <p id="test"></p>
 </div>
 <p class="upload"></p>
   <script src="bundle.js"></script>
@@ -447,23 +447,30 @@
   
   <script>
 
-    var params = {};
+a2blib.then(async (lib) => {
+  const url = new URL(document.location);
+  const id = url.searchParams.get("id");
 
-if (location.search) {
-    var parts = location.search.substring(1).split('&');
-    for (var i = 0; i < parts.length; i++) {
-        var nv = parts[i].split('=');
-        if (!nv[0]) continue;
-        params[nv[0]] = nv[1] || true;
-        var regno = params.Reg;
-        var car = params.Make;
-        var d = params.Date;
-    }
+  const vehicle = await lib.getVehicle(id);
+  const results = await lib.getVehicleResults(id);
+  const car = vehicle.vehicle;
+  const d = vehicle.date;
+  const regno = vehicle.reg;
+    document.getElementById('dt').value = d;
+    document.getElementById('vehicle').value =car;
+    document.getElementById('reg').value = regno;
+    console.log(vehicle);
+    console.log(results);
 
-        document.getElementById('dt').value = d;
-        document.getElementById('vehicle').value =car;
-        document.getElementById('reg').value = regno;
-  }      
+  results.forEach((x) => {
+    console.log(x.id, x.data());
+  })
+}).catch(console.log);
+
+
+        
+        
+       
   function sel(){
       const selected_td = document.querySelectorAll(".clickable .active");
       selected_td.forEach(sel => {

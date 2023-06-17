@@ -1,8 +1,9 @@
+
 import { initializeApp } from 'firebase/app'
 import {
   getFirestore, collection, onSnapshot,
   addDoc, deleteDoc, doc,
-  query,  where, getDocs, orderBy, startAfter, limit, getCountFromServer, serverTimestamp, getDoc
+  query,  where, getDocs, orderBy, startAfter, limit, getCountFromServer, serverTimestamp, getDoc, setDoc
 } from 'firebase/firestore'
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from "firebase/auth";
 import firebase from 'firebase/compat/app';
@@ -519,10 +520,11 @@ if (regNum) {
     if (!querySnapshot.empty){
       let html = '';
       querySnapshot.forEach((doc) => {
+        
       const lu2 = doc.data();
       const li = `
         <tr>
-          <td style="text-transform:uppercase"><a href="search.html?Reg=${lu2.reg}&Make=${lu2.vehicle}&Date=${lu2.date}">${lu2.reg}</a></td><td style="text-transform:uppercase">${lu2.vehicle}</td><td>${lu2.date}</td>
+          <td style="text-transform:uppercase"><a href="search.html?id=${doc.id}">${lu2.reg}</a></td><td style="text-transform:uppercase">${lu2.vehicle}</td><td>${lu2.date}</td>
         </tr>
         `;
         html += li;
@@ -534,14 +536,12 @@ if (regNum) {
           document.getElementById("nrf").innerHTML = noRecords;
         };
       }  
-
-          querySnapshot.forEach((doc) => {
-          setupLU1(querySnapshot.docs);
+        querySnapshot.forEach((doc) => {
+        setupLU1(querySnapshot.docs);
     })   
   })
 };
 
-      
 onSnapshot(q, (snapshot) => {
   let report = []
   snapshot.docs.forEach(doc => {
@@ -572,13 +572,17 @@ const onCellClick = (e) => {
   });
   
   
+  
 
     // Test Report button
     const loadSelections = document.querySelector('.selections')
     if (loadSelections){
-    loadSelections.addEventListener("click", function () {
+    loadSelections.addEventListener("click", async function () {
     const reg = document.getElementById('reg').value;
     const dt = document.getElementById("dt").value;
+    const idQuery = query(addCarRef, where("reg", "==", reg));
+    const querySnapshot = await getDocs(idQuery);
+    console.log(querySnapshot);
     const selected_td = document.querySelectorAll(".clickable .active");
     selected_td.forEach(sel => {
     const dataId = sel.dataset.id;
@@ -587,14 +591,15 @@ const onCellClick = (e) => {
     const slicedId = sel_id.substring(3);
     const newSliced = sliced.replace(/_/g,"");
     const newSlicedId = slicedId.replace(/_/g,"");
-        
-        addDoc(addColRef,{
+    querySnapshot.forEach((doc) => { 
+    const docRef = doc(db, "vehicles", doc.id, "results", "id"); 
+     
+        setDoc(docRef,{
         reference : dataId,
         check : newSlicedId,
         result : newSliced,
-        reg: reg,
         date : dt
-                        
+        })              
           });
       })
     })
@@ -649,13 +654,13 @@ const getResultForm = document.querySelector('.searchedRept')
     var reg = document.getElementById('reg').value;
     var service = document.getElementById("dt").value;
     var make = document.getElementById("vehicle").value;
-console.log(reg);
+
     const getData = query(addColRef, where("reg", "==", reg), where("date", "==", service))
     const ret = await getDocs(getData);
     ret.forEach(async (doc) => {
     const retData = doc.data();
-    console.log(retData.reference);
-    console.log(doc.id);
+    console.log(retData.reference); // Reference in result document
+    console.log(doc.id); // ID of result document
           //const getCheck = query(colRef, where(doc.id, "==", retData.reference));
           //const ret2 = await getDocs(getCheck);
           //ret2.forEach( async (snapshot) => {
@@ -663,17 +668,14 @@ console.log(reg);
               //console.log(retData.reference);
               //console.log(gotData.check);
            // })
-
-      
-      console.log(retData.check, " - ", retData.result);
-      });
-             
-          document.getElementById("car").style.display='block';
-          document.getElementById("dealer").style.display='none';
-          document.getElementById("manuf").innerHTML = make;
-          document.getElementById("num").innerHTML = reg;
-          document.getElementById("lastDate").innerHTML = service;
-        })
+    console.log(retData.check, " - ", retData.result);
+    });
+        document.getElementById("car").style.display='block';
+        document.getElementById("dealer").style.display='none';
+        document.getElementById("manuf").innerHTML = make;
+        document.getElementById("num").innerHTML = reg;
+        document.getElementById("lastDate").innerHTML = service;
+      })
     }
  
   
@@ -720,20 +722,36 @@ function searchReg(){
 
 const getDat = document.querySelector('.repData');
 if (getDat){
-getDat.addEventListener('click', () => {
+getDat.addEventListener('click', async () => {
 const table_data = document.querySelector(".clickable");
 const selected_td = document.querySelectorAll(".clickable .active");
-
+const reg = document.getElementById('reg').value;
+    const dt = document.getElementById("dt").value;
+    const idQuery = query(addCarRef, where("reg", "==", reg));
+    const querySnapshot = await getDocs(idQuery);
+    
       selected_td.forEach(sel => {
         for(var i=0;i<selected_td.length;i++){
           var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
           console.log(d);
-      const dataId = sel.dataset.id;
-      const sel_id = sel.id;
-      const sliced = sel_id.slice(0,3);
-      const newSliced = sliced.replace(/_/g,"");
-      console.log( newSliced + " - " + dataId) 
-        }
+          const dataId = sel.dataset.id;
+          const sel_id = sel.id;
+          const sliced = sel_id.slice(0,3);
+          const newSliced = sliced.replace(/_/g,"");
+      
+      querySnapshot.forEach((doc) => { 
+        console.log(doc.id); 
+        console.log(dataId); 
+        console.log(newSliced); 
+        
+        const docRef = collection(db, "vehicles", doc.id, "results"); 
+        addDoc(docRef,{
+          reference : dataId,
+          check : d,
+          result : newSliced
+          })      
+      }) 
+     }
     })
   })
 }
@@ -747,4 +765,17 @@ searchRegNo.addEventListener('click', () => {
 })
 }
 
+// These functions are exported and can be accessed from the a2blib module
+// See search.html
+export const getVehicle = async (id) => {
+  const vehicleRef = doc(db, "vehicles", id);
+  const vehicleDoc = await getDoc(vehicleRef);
 
+  return vehicleDoc.data();
+}
+
+export const getVehicleResults = async (id) => {
+  const resultsRef = collection(db, "vehicles", id, "results");
+  const resultsDocs = await getDocs(resultsRef);
+  return resultsDocs.docs;
+}

@@ -181,7 +181,7 @@
       <div ><h4>Inspection Reports</h4></div><br>
       <div>
         <table class="table-info">
-          <tr><td>REG. NUMBER --></td><td><input type="text" id="regNo" style="text-transform:uppercase"></td></tr>
+          <tr><td>REG. NUMBER --></td><td><input type="text" id="regNo" style="text-transform:uppercase" value=""></td></tr>
           <tr><td></td><td><button class="btn btn-primary btn-lg searchregno" >Search Reg No</button></td></tr> 
         </table>
       </div>
@@ -265,16 +265,16 @@
 <script>
  var params = {};
 
-if (location.search) {
-    var parts = location.search.substring(1).split('&');
-    for (var i = 0; i < parts.length; i++) {
-        var nv = parts[i].split('=');
-        if (!nv[0]) continue;
-        params[nv[0]] = nv[1] || true;
-        var selRegNo = params.Reg;
-            }
-}
-document.getElementById('regNo').value = selRegNo;
+ a2blib.then((lib) => {
+  const url = new URL(document.location);
+  const id = url.searchParams.get("id");
+
+  return lib.GetVehicle(id);
+ }).then((res) => {
+  console.log(res);
+ }).catch(console.log);
+
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var modals = document.querySelectorAll('.modal');
