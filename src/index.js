@@ -582,7 +582,6 @@ const onCellClick = (e) => {
     const dt = document.getElementById("dt").value;
     const idQuery = query(addCarRef, where("reg", "==", reg));
     const querySnapshot = await getDocs(idQuery);
-    console.log(querySnapshot);
     const selected_td = document.querySelectorAll(".clickable .active");
     selected_td.forEach(sel => {
     const dataId = sel.dataset.id;
@@ -593,7 +592,6 @@ const onCellClick = (e) => {
     const newSlicedId = slicedId.replace(/_/g,"");
     querySnapshot.forEach((doc) => { 
     const docRef = doc(db, "vehicles", doc.id, "results", "id"); 
-     
         setDoc(docRef,{
         reference : dataId,
         check : newSlicedId,
@@ -732,28 +730,26 @@ const querySnapshot = await getDocs(idQuery);
    
   for(var i=0;i<selected_td.length;i++){
   var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
-    console.log(d); //the check carried out
-    }    
-    selected_td.forEach(sel => {  
-    const dataId = sel.dataset.id;
-    const sel_id = sel.id;
-    const sliced = sel_id.slice(0,3);
-    const newSliced = sliced.replace(/_/g,""); 
-    querySnapshot.forEach((doc) => { 
-      //console.log(doc.id); //id of Vehicle
-      console.log(dataId); //Report Reference number
-      console.log(newSliced); //Result of inspection
-      
+  let elements = Array.from(selected_td);
+  let dataId = elements[i].dataset.id;
+  let elem = elements[i].id;
+  let sliced = elem.slice(0,3);
+  let newSliced = sliced.replace(/_/g,""); 
+  
+    console.log(`check : ${d}`); //the check carried out
+    console.log(`result: ${newSliced}`); // result of the check
+    console.log(`Reference: ${dataId}`) ;  
+      querySnapshot.forEach((doc) => { 
       const docRef = collection(db, "vehicles", doc.id, "results"); 
       addDoc(docRef,{
       reference : dataId,
-      //check : d,
+      check : d,
       result : newSliced
         })      
       })
-    })
+    }
   })
-}
+};
 
 const searchRegNo = document.querySelector('.searchNum');
 if (searchRegNo) {
