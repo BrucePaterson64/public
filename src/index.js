@@ -730,28 +730,27 @@ const dt = document.getElementById("dt").value;
 const idQuery = query(addCarRef, where("reg", "==", reg));
 const querySnapshot = await getDocs(idQuery);
    
-  selected_td.forEach(sel => {
-      for(var i=0;i<selected_td.length;i++){
-          var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
-          console.log(d); //the check carried out
-          const dataId = sel.dataset.id;
-          const sel_id = sel.id;
-          const sliced = sel_id.slice(0,3);
-          const newSliced = sliced.replace(/_/g,"");
+  for(var i=0;i<selected_td.length;i++){
+  var d = table_data.rows[i].cells.item(0).innerHTML + ','; 
+    console.log(d); //the check carried out
+    }    
+    selected_td.forEach(sel => {  
+    const dataId = sel.dataset.id;
+    const sel_id = sel.id;
+    const sliced = sel_id.slice(0,3);
+    const newSliced = sliced.replace(/_/g,""); 
+    querySnapshot.forEach((doc) => { 
+      //console.log(doc.id); //id of Vehicle
+      console.log(dataId); //Report Reference number
+      console.log(newSliced); //Result of inspection
       
-  querySnapshot.forEach((doc) => { 
-        console.log(doc.id); //ID of Vehicle
-        console.log(dataId); //Report Reference number
-        console.log(newSliced); //Result of inspection
-        
-        const docRef = collection(db, "vehicles", doc.id, "results"); 
-        addDoc(docRef,{
-          reference : dataId,
-          check : d,
-          result : newSliced
-          })      
-      }) 
-     }
+      const docRef = collection(db, "vehicles", doc.id, "results"); 
+      addDoc(docRef,{
+      reference : dataId,
+      //check : d,
+      result : newSliced
+        })      
+      })
     })
   })
 }
