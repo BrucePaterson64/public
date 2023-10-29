@@ -147,7 +147,7 @@
 
         </ul>
       </div>
-      <div><button class="btn yellow darken-2 z-depth-0" onclick="searchNum()">Go to Inspection Report</button></div>
+      <div><button class="btn yellow darken-2 z-depth-0 searchNum">Go to Inspection Report</button></div>
     </div>
 </div>
 
@@ -190,7 +190,7 @@
         <form class="frmReport" id="frmReport" action="">
             <table class="table no-gutters">
               <tr><td style="width:150px">Date:</td><td><input style="height:20px;" type="date" name="dt" id="dt" value="" ></td></tr>
-              <tr><td>Vehicle:</td><td><input style="height:20px;" type="text" id="vehicle" name="vehicle" value="" ></td></tr>
+              <tr><td>Vehicle??:</td><td><input style="height:20px;" type="text" id="vehicle" name="vehicle" value="" ></td></tr>
               <tr><td>Registration No:</td><td><input style="height:20px;" type="text" name="reg" id="reg" value="" ></td></tr>
               <tr><td>Current Mileage:</td><td><input style="height:20px;" type="number" name="miles" id="miles" value=""></td></tr>
               <tr><td>Last Service:</td><td><input style="height:20px;" type="date" name="service" id="service" value=""></td></tr>
@@ -446,7 +446,12 @@
   <script src="bundle.js"></script>
   
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+  
+
   <script>
+  
+     
   function sel(){
       const selected_td = document.querySelectorAll(".clickable .active");
       selected_td.forEach(sel => {

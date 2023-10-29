@@ -738,7 +738,7 @@ const querySnapshot = await getDocs(idQuery);
   
     console.log(`check : ${d}`); //the check carried out
     console.log(`result: ${newSliced}`); // result of the check
-    console.log(`Reference: ${dataId}`) ;  
+    console.log(`Reference: ${dataId}`) ; // Reference nummer od the check carried out  
       querySnapshot.forEach((doc) => { 
       const docRef = collection(db, "vehicles", doc.id, "results"); 
       addDoc(docRef,{

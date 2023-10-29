@@ -263,6 +263,9 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 
 <script>
+  const url = new URL(document.location);
+  const r = url.searchParams.get("Reg");
+    document.getElementById("regNo").value = r;
  var params = {};
 
  a2blib.then((lib) => {
